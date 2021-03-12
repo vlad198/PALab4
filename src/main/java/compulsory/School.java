@@ -9,9 +9,15 @@ import java.util.Objects;
 
 public @Data
 @EqualsAndHashCode
-class School {
+class School implements Comparable<School> {
     @NonNull
     private String name;
     private int capacity;
 
+    @Override
+    public int compareTo(School o) {
+        if (this.name == null)
+            return 0;
+        return this.name.compareTo(o.getName());
+    }
 }
