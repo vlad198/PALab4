@@ -5,6 +5,9 @@ import optional.student.Student;
 
 import java.util.List;
 
+/**
+ * Class for printing the student/class lists
+ */
 public class Print{
     public static void printStudentList(List<Student> studentList,String msg){
         System.out.println(msg);

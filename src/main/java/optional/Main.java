@@ -20,21 +20,23 @@ public class Main {
         for (Student student : studentList)
             randomInstances.addRandomSchoolsToStudent(student, schoolList);
 
+        for (School school : schoolList)
+            randomInstances.addRandomStudentsToSchool(school, studentList);
+
         Print.printSchoolList(schoolList, "Schools: ");
         Print.printStudentList(studentList, "Students: ");
 
         // find students that prefers some schools
         List<School> querySchoolList = new LinkedList<>(Arrays.asList(schoolList.get(0)));
         List<Student> filterStudentList = query.findAcceptableStudents(studentList, querySchoolList);
-        Print.printStudentList(filterStudentList, "Filtered students list: ");
+        Print.printStudentList(filterStudentList, "Students that prefer " + schoolList.get(0).getName());
 
-        // find schools that prefers some students
-        List<Student> queryStudentList = new LinkedList<>(Arrays.asList(studentList.get(0)));
-        List<School> filterSchoolList = query.findAcceptableSchools(schoolList, queryStudentList);
-        Print.printSchoolList(filterSchoolList, "Filter school list: ");
+        // schools that have a student as their top preference
+        List<School> filterSchooList = query.studentAsTopPreference(schoolList, studentList.get(0));
+        Print.printSchoolList(filterSchooList, "Schools that have " + studentList.get(0).getName() + " as their top preference");
 
-//        Problem problem = new Problem(studentList, schoolList);
-//        System.out.println(problem.solveProblem());
-//        System.out.println(problem);
+        Problem problem = new Problem(studentList, schoolList);
+        System.out.println(problem.solveProblem());
+        System.out.println(problem);
     }
 }

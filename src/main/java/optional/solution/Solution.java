@@ -5,6 +5,10 @@ import lombok.Getter;
 
 import java.util.List;
 
+/**
+ * This class describes the solution of the problem
+ * having a list of (student name,school name) pairs
+ */
 public @Getter
 @AllArgsConstructor
 class Solution {
