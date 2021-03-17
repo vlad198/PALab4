@@ -11,7 +11,7 @@ import optional.utilities.Print;
 import java.util.*;
 
 public class Main {
-    public static void main(String[] args) throws NoSuchMethodException {
+    public static void main(String[] args) {
         RandomInstances randomInstances = new RandomInstances();
         Query query = new Query();
 
