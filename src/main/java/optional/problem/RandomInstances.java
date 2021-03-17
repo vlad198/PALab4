@@ -52,6 +52,8 @@ public class RandomInstances {
         int numberOfSchools = (int) (Math.random() * schoolList.size()) + 1;
         List<Integer> indexesList = generateRandomListOfIndexes(schoolList.size(), numberOfSchools);
 
+        Collections.shuffle(indexesList);
+
         for (int i = 0; i < numberOfSchools; i++)
             student.addSchool(schoolList.get(indexesList.get(i)));
     }
@@ -59,6 +61,8 @@ public class RandomInstances {
     public void addRandomStudentsToSchool(School school, List<Student> studentList) {
         int numberOfStudents = (int) (Math.random() * studentList.size()) + 1;
         List<Integer> indexesList = generateRandomListOfIndexes(studentList.size(), numberOfStudents);
+
+        Collections.shuffle(indexesList);
 
         for (int i = 0; i < numberOfStudents; i++)
             school.addStudent(studentList.get(indexesList.get(i)));
