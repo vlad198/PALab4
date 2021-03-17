@@ -36,7 +36,7 @@ where to packageName is the name of the package which includes the file Main.jav
 
 ## Problem
 
-###The Student / High School Admission Problem (SAP)
+### The Student / High School Admission Problem (SAP)
 
 An instance of SAP involves a set of students and a set of high schools, each student seeking admission to one school, and each school having a number of available places (its capacity).
 Each student ranks some (acceptable) schools in strict order, and each school ranks its applicants in some order.
@@ -72,3 +72,29 @@ A solution for this example might be: [(S0:H1),(S1:H2),(S2:H1),(S3:H0)]
 
 ![](readme_images/compulsory_instanta.png)
 ![](readme_images/compulsory_rezultat.png)
+
+### Optional
+
+- [x] Create a class that describes the problem and one that describes a solution (a matching) to this problem.
+- [x] Using Java Stream API, write queries that display the students who find acceptable a given list of schools, and the schools that have a given student as their top preference.
+- [x] Use a third-party library in order to generate random fake names for students and schools.
+- [x] Implement an algorithm for creating a matching, considering that each student has a score obtained at the evaluation exam and the schools rank students based on this score.
+- [x] Test your algorithm.
+
+![](readme_images/optional_query_instanta.png)
+![](readme_images/optional_query_rezultat.png)
+
+![](readme_images/optional_problema_1_instanta.png)
+![](readme_images/optional_problema_1_rezultat.png)
+
+![](readme_images/optional_problema_2_instanta.png)
+![](readme_images/optional_problema_2_rezultat.png)
+
+### Bonus
+
+- [ ] Consider the case in which a school can rank the students based on their specific criteria.
+- [ ] Implement the Gale Shapley algorithm in order to find a stable matching.
+- [ ] Consider the case in which preferences are not necessarily strict. Some consecutive preferences in an element's list may form a tie.
+For example S1: H1, [H2,H3] means that S1 prefers H1 over H2 and H3, but H2 and H3 have no precedence one over the other.
+- [ ] Prove that in the case of SAP with ties, a problem may have multiple stable matchings, not all of the same size.
+- [ ] Check out other examples of matching in practice.
