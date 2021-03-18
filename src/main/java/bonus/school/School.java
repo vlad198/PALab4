@@ -23,6 +23,12 @@ class School implements Comparator<School>, Comparable<School> {
     private int capacity;
     private List<Student> desiredStudents;
 
+    public School(String name) {
+        this.name = name;
+        this.capacity = 0;
+        this.desiredStudents = new LinkedList<>();
+    }
+
     @Override
     public String toString() {
         StringBuilder result = new StringBuilder("School{" +
