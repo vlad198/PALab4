@@ -15,47 +15,82 @@ import java.util.stream.IntStream;
 
 public class Main {
     public static void main(String[] args) {
-        var students = IntStream.rangeClosed(0, 3)
-                .mapToObj(i -> new Student("S" + i))
+        var students = IntStream.rangeClosed(0, 4)
+                .mapToObj(i -> new Student(String.valueOf((char)('A' + i))))
                 .toArray(Student[]::new);
 
-        var schools = IntStream.rangeClosed(0, 2)
-                .mapToObj(i -> new School("H" + i))
+        var schools = IntStream.rangeClosed(0, 4)
+                .mapToObj(i -> new School(String.valueOf((char)('L' + i))))
                 .toArray(School[]::new);
 
         // set capacity
         schools[0].setCapacity(1);
-        schools[1].setCapacity(2);
-        schools[2].setCapacity(2);
+        schools[1].setCapacity(1);
+        schools[2].setCapacity(1);
+        schools[3].setCapacity(1);
+        schools[4].setCapacity(1);
 
         // set school list
-        students[0].addSchool(schools[0]);
+        students[0].addSchool(schools[3]);
         students[0].addSchool(schools[1]);
         students[0].addSchool(schools[2]);
+        students[0].addSchool(schools[0]);
+        students[0].addSchool(schools[4]);
 
-        students[1].addSchool(schools[0]);
-        students[1].addSchool(schools[1]);
+        students[1].addSchool(schools[4]);
         students[1].addSchool(schools[2]);
+        students[1].addSchool(schools[1]);
+        students[1].addSchool(schools[0]);
+        students[1].addSchool(schools[3]);
 
-        students[2].addSchool(schools[0]);
         students[2].addSchool(schools[1]);
+        students[2].addSchool(schools[4]);
+        students[2].addSchool(schools[0]);
+        students[2].addSchool(schools[3]);
+        students[2].addSchool(schools[2]);
 
-        students[3].addSchool(schools[0]);
+        students[3].addSchool(schools[4]);
+        students[3].addSchool(schools[1]);
+        students[3].addSchool(schools[3]);
         students[3].addSchool(schools[2]);
+        students[3].addSchool(schools[0]);
+
+        students[4].addSchool(schools[3]);
+        students[4].addSchool(schools[0]);
+        students[4].addSchool(schools[1]);
+        students[4].addSchool(schools[2]);
+        students[4].addSchool(schools[4]);
 
         // set student list
         schools[0].addStudent(students[3]);
-        schools[0].addStudent(students[0]);
         schools[0].addStudent(students[1]);
+        schools[0].addStudent(students[4]);
         schools[0].addStudent(students[2]);
+        schools[0].addStudent(students[0]);
 
-        schools[1].addStudent(students[0]);
-        schools[1].addStudent(students[2]);
         schools[1].addStudent(students[1]);
+        schools[1].addStudent(students[0]);
+        schools[1].addStudent(students[3]);
+        schools[1].addStudent(students[2]);
+        schools[1].addStudent(students[4]);
 
         schools[2].addStudent(students[0]);
-        schools[2].addStudent(students[1]);
+        schools[2].addStudent(students[2]);
+        schools[2].addStudent(students[4]);
         schools[2].addStudent(students[3]);
+        schools[2].addStudent(students[1]);
+
+        schools[3].addStudent(students[3]);
+        schools[3].addStudent(students[0]);
+        schools[3].addStudent(students[2]);
+        schools[3].addStudent(students[1]);
+        schools[3].addStudent(students[4]);
+
+        schools[4].addStudent(students[1]);
+        schools[4].addStudent(students[4]);
+        schools[4].addStudent(students[0]);
+        schools[4].addStudent(students[2]);
+        schools[4].addStudent(students[3]);
 
         Problem problem = new Problem(new LinkedList<>(Arrays.asList(students)), Arrays.asList(schools));
         Solution solution = problem.solveProblem();

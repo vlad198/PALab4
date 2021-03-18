@@ -113,30 +113,21 @@ class Problem {
                         StudentTaken studentInSchoolList = currentSchoolList.get(i);
                         if (studentInSchoolList.getStudent().equals(student)) {
                             int seats = seatsAvailable.get(currentSchool);
-                            if (seats > 0) {
-                                // atunci mai am loc
-                                // marchez in lista studentului
-                                schoolTaken.setIsTaken(1);
-                                // marchez in lista scolii
-                                studentInSchoolList.setIsTaken(1);
-                                // updatez locurile ramase
-                                seatsAvailable.put(currentSchool, seats - 1);
-                            } else {
-                                // nu mai am loc
-                                // vad daca studentul curent e inaintea unuia care e deja pus
-                                // indexul ultimului stundet asignat scolii
-                                int lastIndexStudent = getLastIndexAssignedStudent(currentSchoolList);
-                                if (lastIndexStudent < i) // daca e dupa ultimul student bagat
+                            if (seats > 0) {                                   // atunci mai am loc
+                                schoolTaken.setIsTaken(1);                     // marchez in lista studentului
+                                studentInSchoolList.setIsTaken(1);             // marchez in lista scolii
+                                seatsAvailable.put(currentSchool, seats - 1);  // updatez locurile ramase
+                            } else {                                                             // nu mai am loc
+                                int lastIndexStudent = getLastIndexAssignedStudent(currentSchoolList);                                   // vad daca studentul curent e inaintea unuia care e deja pus indexul ultimului stundet asignat scolii
+                                if (lastIndexStudent < i)                                                                                // daca e dupa ultimul student bagat
                                 {
                                     schoolTaken.setIsTaken(-1);
                                     return;
                                 }
-                                // altfel
-                                // tai studentul precedent
-                                undoSchoolForStudent(currentSchoolList.get(lastIndexStudent).getStudent(), currentSchool, freeStudents);
-                                // pun asta nou
-                                schoolTaken.setIsTaken(1); // in lista studentului
-                                studentInSchoolList.setIsTaken(1); // in lista scolii
+                                undoSchoolForStudent(currentSchoolList.get(lastIndexStudent).getStudent(), currentSchool, freeStudents); // altfel tai studentul precedent
+                                currentSchoolList.get(lastIndexStudent).setIsTaken(-1);                                                  // il tai si din lista curent
+                                schoolTaken.setIsTaken(1); // pun asta nou in lista studentului
+                                studentInSchoolList.setIsTaken(1); // pun asta nou in lista scolii
                             }
                             return;
                         }
