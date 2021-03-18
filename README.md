@@ -99,7 +99,7 @@ For example S1: H1, [H2,H3] means that S1 prefers H1 over H2 and H3, but H2 and 
 - [x] Prove that in the case of SAP with ties, a problem may have multiple stable matchings, not all of the same size.
 - [x] Check out other examples of matching in practice.
 
-Let's consider the example: 4 students S0,S1,S2,S3, 3 high schools H0,H1,H2, capacity(H0)=1, capacity(H1)=2, capacity(H2)=2.
+Example 1: 4 students S0,S1,S2,S3, 3 high schools H0,H1,H2, capacity(H0)=1, capacity(H1)=2, capacity(H2)=2.
 
 students preferences
 
@@ -114,5 +114,32 @@ schools preferences
 - H1: (S0, S2, S1)
 - H2: (S0, S1, S3)
 
+A solution for this example might be: [(S0:H1),(S1:H2),(S2:H1),(S3:H0)]
+
 ![](readme_images/bonus_exemplu_1_instanta.png)
 ![](readme_images/bonus_exemplu_1_rezultat.png)
+
+Example 2: 5 students A, B, C, D, E; 5 high schools L, M, N, O, P; capacity(school)=1
+
+students preferences
+
+- A: (O, M, N, L, P)
+- B: (P, N, M, L, O)
+- C: (M, P, L, O, N)
+- D: (P, M, O, N, L)
+- E: (O, L, M, N, P)
+
+schools preferences
+
+- L: (D, B, E, C, A)
+- M: (B, A, D, C, E)
+- N: (A, C, E, D, B)
+- O: (D, A, C, B, E)
+- P: (B, E, A, C, D)
+
+Expected solution:
+
+![](readme_images/bonus_exemplu_2_desen.png)
+
+![](readme_images/bonus_exemplu_2_instanta.png)
+![](readme_images/bonus_exemplu_2_rezultat.png)
