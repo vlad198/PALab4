@@ -46,16 +46,11 @@ class Problem {
         return result.toString();
     }
 
-    private boolean prefersOver(School school, Student student1, Student student2) {
-        for (Student student : school.getDesiredStudents()) {
-            if (student.equals(student2))
-                return true;
-            if (student.equals(student1))
-                return false;
-        }
-        return false;
-    }
-
+    /**
+     * This functions verifies that a student has a school assigned to him
+     * @param schoolTakenList the student list of schools available
+     * @return true, if there exist a school in the list with the value of isTaken = 1; false otherwise
+     */
     private boolean isStudentAssigned(List<SchoolTaken> schoolTakenList) {
         for (SchoolTaken schoolTaken : schoolTakenList)
             if (schoolTaken.getIsTaken() == 1) {
@@ -64,6 +59,11 @@ class Problem {
         return false;
     }
 
+    /**
+     * This function returns first student that is not assigned to a school
+     * @param freeStudents the map of students with their list of preferences
+     * @return first student that is not assigned to a school
+     */
     private Student firstStudentUnassigned(Map<Student, List<SchoolTaken>> freeStudents) {
         for (Map.Entry<Student, List<SchoolTaken>> entry : freeStudents.entrySet())
             if (!isStudentAssigned(entry.getValue()))
@@ -71,6 +71,11 @@ class Problem {
         return new Student();
     }
 
+    /**
+     * This function verifies that all the students in the list are satisfied
+     * @param freeStudents the map of students with their list of preferences
+     * @return true; if every student in the list has one school assigned to him
+     */
     private boolean areAllStudentsAssigned(Map<Student, List<SchoolTaken>> freeStudents) {
         for (Map.Entry<Student, List<SchoolTaken>> entry : freeStudents.entrySet())
             if (!isStudentAssigned(entry.getValue()))
@@ -78,6 +83,11 @@ class Problem {
         return true;
     }
 
+    /**
+     * This function returns the last index of a student assigned to a school in the school list of preferences
+     * @param currentSchoolList the school list of preferences
+     * @return the last index of a student assigned to the current school
+     */
     private int getLastIndexAssignedStudent(List<StudentTaken> currentSchoolList) {
         for (int i = currentSchoolList.size() - 1; i >= 0; i--)
             if (currentSchoolList.get(i).getIsTaken() == 1)
@@ -85,6 +95,12 @@ class Problem {
         return -1;
     }
 
+    /**
+     * This function deletes(marks it with -1) the currentSchool that was assigned to a student
+     * @param currentStudent the student on which we want to delete the school
+     * @param currentSchool the school we want to delete
+     * @param freeStudents the map of students with their list of preferences
+     */
     private void undoSchoolForStudent(Student currentStudent, School currentSchool, Map<Student, List<SchoolTaken>> freeStudents) {
         List<SchoolTaken> schoolTakenList = freeStudents.get(currentStudent);
         for (SchoolTaken school : schoolTakenList)
@@ -94,6 +110,11 @@ class Problem {
             }
     }
 
+    /**
+     * This function returns the school that was assigned to a student
+     * @param schoolTakenList the school list of preferences for a specific student
+     * @return the school assigned to the student
+     */
     public School getSchoolMatched(List<SchoolTaken> schoolTakenList) {
         for (SchoolTaken school : schoolTakenList)
             if (school.getIsTaken() == 1)
@@ -101,6 +122,15 @@ class Problem {
         return new School();
     }
 
+    /**
+     * This function updates the school for the current student, based on the Gale-Shapley Algorithm.
+     * It will try to satisfy the current student with the best school for the moment, and if that
+     * school has better "match" it get over that school.
+     * @param student the student on which we want to find the perfect "match"
+     * @param freeStudents the map of students with their preferences
+     * @param freeSchools the map of schools with their preferences
+     * @param seatsAvailable the map of seats available for a specific school
+     */
     private void updateStudentSchool(Student student, Map<Student, List<SchoolTaken>> freeStudents, Map<School, List<StudentTaken>> freeSchools, Map<School, Integer> seatsAvailable) {
         List<SchoolTaken> studentDesiredSchoolsList = freeStudents.get(student);
         for (SchoolTaken schoolTaken : studentDesiredSchoolsList) {
@@ -126,8 +156,8 @@ class Problem {
                                 }
                                 undoSchoolForStudent(currentSchoolList.get(lastIndexStudent).getStudent(), currentSchool, freeStudents); // altfel tai studentul precedent
                                 currentSchoolList.get(lastIndexStudent).setIsTaken(-1);                                                  // il tai si din lista curent
-                                schoolTaken.setIsTaken(1); // pun asta nou in lista studentului
-                                studentInSchoolList.setIsTaken(1); // pun asta nou in lista scolii
+                                schoolTaken.setIsTaken(1);                                                                               // pun asta nou in lista studentului
+                                studentInSchoolList.setIsTaken(1);                                                                       // pun asta nou in lista scolii
                             }
                             return;
                         }
@@ -140,6 +170,8 @@ class Problem {
 
     /**
      * this function will solve the instantiated problem.
+     * It is using the Gale-Shapley Algorithm. For every student that is unassigned to a school
+     * it will try to find him the best match until all the students are satisfied with a school.
      *
      * @return it will return a list of pairs (x,y)
      * meaning student x is assigned to school y.
