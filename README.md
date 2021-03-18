@@ -92,9 +92,27 @@ A solution for this example might be: [(S0:H1),(S1:H2),(S2:H1),(S3:H0)]
 
 ### Bonus
 
-- [ ] Consider the case in which a school can rank the students based on their specific criteria.
-- [ ] Implement the Gale Shapley algorithm in order to find a stable matching.
-- [ ] Consider the case in which preferences are not necessarily strict. Some consecutive preferences in an element's list may form a tie.
+- [x] Consider the case in which a school can rank the students based on their specific criteria.
+- [x] Implement the Gale Shapley algorithm in order to find a stable matching.
+- [x] Consider the case in which preferences are not necessarily strict. Some consecutive preferences in an element's list may form a tie.
 For example S1: H1, [H2,H3] means that S1 prefers H1 over H2 and H3, but H2 and H3 have no precedence one over the other.
-- [ ] Prove that in the case of SAP with ties, a problem may have multiple stable matchings, not all of the same size.
-- [ ] Check out other examples of matching in practice.
+- [x] Prove that in the case of SAP with ties, a problem may have multiple stable matchings, not all of the same size.
+- [x] Check out other examples of matching in practice.
+
+Let's consider the example: 4 students S0,S1,S2,S3, 3 high schools H0,H1,H2, capacity(H0)=1, capacity(H1)=2, capacity(H2)=2.
+
+students preferences
+
+- S0: (H0, H1, H2)
+- S1: (H0, H1, H2)
+- S2: (H0, H1)
+- S3: (H0, H2)
+
+schools preferences
+
+- H0: (S3, S0, S1, S2)
+- H1: (S0, S2, S1)
+- H2: (S0, S1, S3)
+
+![](readme_images/bonus_exemplu_1_instanta.png)
+![](readme_images/bonus_exemplu_1_rezultat.png)
